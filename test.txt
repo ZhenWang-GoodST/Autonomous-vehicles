@@ -21,3 +21,9 @@ test branch
 git push提示:
 fatal: The current branch test-branch has no upstream branch.
 To push the current branch and set the remote as upstream, use
+
+git add xx.txt
+:将文件添加到暂存区
+git commit:告诉git，把文件提交到仓库
+-m加注释
+git status：查看是否还有文件未提交
