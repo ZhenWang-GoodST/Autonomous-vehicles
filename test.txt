@@ -38,3 +38,12 @@ git status：查看是否还有文件未提交
 
 test
 git merge命令用于合并指定分支到当前分支上
+git branch -d test-branch
+报错：warning: not deleting branch 'test-branch' that is not yet merged to
+         'refs/remotes/origin/test-branch', even though it is merged to HEAD.
+error: The branch 'test-branch' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D test-branch'.
+需要将其push到远程才可以删除
+git push -u origin test-branch
+删除远程分支git push --delete origin old_branch
+https://blog.csdn.net/u011535541/article/details/83379151
