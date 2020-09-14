@@ -1,0 +1,8 @@
+https://www.khronos.org/vulkan/
+https://vulkan.lunarg.com/doc/sdk/1.1.130.0/linux/getting_started_ubuntu.html
+https://01.org/linuxgraphics/blogs/jekstrand/2016/open-source-vulkan-drivers-intel-hardware
+https://ubuntuqa.com/article/10482.html
+vulkan错误：https://www.jianshu.com/p/8b278029ffd6
+~/company/coding/airsim/UnrealEngine$ ./Engine/Binaries/Linux/UE4Editor
+catkin build'提示'command not found'的解决方法:https://blog.csdn.net/weixin_39585934/article/details/80653569
+
