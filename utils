@@ -6,3 +6,9 @@ vulkan错误：https://www.jianshu.com/p/8b278029ffd6
 ~/company/coding/airsim/UnrealEngine$ ./Engine/Binaries/Linux/UE4Editor
 catkin build'提示'command not found'的解决方法:https://blog.csdn.net/weixin_39585934/article/details/80653569
 sudo apt-get install ros-melodic-tf2-sensor-msgs ros-melodic-mavros*
+   29  sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-bionic.list http://packages.lunarg.com/vulkan/lunarg-vulkan-bionic.list
+   31  sudo apt install vulkan-sdk
+   43  sudo apt install vulkan-sdk
+   46  sudo apt-get install mesa-vulkan-drivers vulkan-utils
+  166  history | grep vulk
+
