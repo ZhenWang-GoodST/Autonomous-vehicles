@@ -1,0 +1,41 @@
+make PythonAPI ARGS="--python-version=2"
+/home/tl/simulator/UnrealEngine_4.24/Engine/Binaries/Linux/UE4Editor /home/tl/simulator/carla/Unreal/CarlaUE4/CarlaUE4.uproject -vulkan
+
+sensor_msgs
+mkdir catkinws/src -p
+catkin_create_pkg ros_test_node std_msgs rospy roscpp
+环境
+Carla master分支
+UnrealEngine 4.24
+sumo 1.7.0
+ros-bridge master
+python python2
+
+启动
+roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch
+：指定起点和地图
+启动
+Carla:
+    1. ros_bridge 启动ros-bridge,carla 客户端UI
+    2. linkco-mkz vehicle
+    3. rviz配置
+Unreal Engine:
+　　直接启动：~/simulator:./launchUE4.sh 封装了只打开虚幻项目的命令
+　　编译启动：cd ~/simulator/carla && make launch
+
+sumo
+　　cd ~/simulator/carla/Co-Simulation/Sumo
+　　python spawn_npc_sumo.py -n 10 --tls-manager carla --sumo-gui
+n sumo生成车辆数目
+--tls-manager　sumo/carla/none 管理交通信号灯的主体
+更改地图：~/simulator/carla/PythonAPI/util　python config.py --map Town04
+
+
+路网编辑：
+netedit net.net1.xml
+
+运行监视：
+gnome-system-monitor
+watch -n 10 nvidia-smi
+
+
