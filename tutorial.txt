@@ -4,6 +4,9 @@ make PythonAPI ARGS="--python-version=2"
 sensor_msgs
 mkdir catkinws/src -p
 catkin_create_pkg ros_test_node std_msgs rospy roscpp
+配置：
+
+/home/tl/simulator/carla-ros-bridge/ros-bridge/carla_ego_vehicle/config/sensors.json
 环境
 Carla master分支
 UnrealEngine 4.24
