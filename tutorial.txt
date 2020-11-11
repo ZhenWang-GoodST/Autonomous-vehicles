@@ -43,4 +43,79 @@ netedit net.net1.xml
 gnome-system-monitor
 watch -n 10 nvidia-smi
 
+melodic使用python2
+
+# Make sure to meet the minimum requirements
+# Read the complete documentation to understand each step
+
+# Install dependencies
+sudo apt-get update &&
+sudo apt-get install wget software-properties-common &&
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test &&
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - &&
+sudo apt-add-repository "deb http://apt.llvm.org/$(lsb_release -c --short)/ llvm-toolchain-$(lsb_release -c --short)-8 main" &&
+sudo apt-get update
+
+# Additional dependencies for Ubuntu 18.04
+sudo apt-get install build-essential clang-8 lld-8 g++-7 cmake ninja-build libvulkan1 python python-pip python-dev python3-dev python3-pip libpng-dev libtiff5-dev libjpeg-dev tzdata sed curl unzip autoconf libtool rsync libxml2-dev &&
+pip2 install --user setuptools &&
+pip3 install --user -Iv setuptools==47.3.1
+
+# Change default clang version
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-8/bin/clang++ 180 &&
+sudo update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-8/bin/clang 180
+
+
+# Download Unreal Engine 4.24
+git clone --depth=1 -b 4.24 https://github.com/EpicGames/UnrealEngine.git ~/UnrealEngine_4.24
+cd ~/UnrealEngine_4.24
+
+# Download and install the UE patch
+wget https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/UE_Patch/430667-13636743-patch.txt 430667-13636743-patch.txt
+patch --strip=4 < 430667-13636743-patch.txt
+
+# Build UE
+./Setup.sh && ./GenerateProjectFiles.sh && make
+
+# Open the UE Editor to check everything works properly
+cd ~/UnrealEngine_4.24/Engine/Binaries/Linux && ./UE4Editor
+
+# Clone the CARLA repository
+git clone https://github.com/carla-simulator/carla
+
+# Get the CARLA assets
+cd ~/carla
+./Update.sh
+
+# Set the environment variable
+export UE4_ROOT=~/UnrealEngine_4.24
+
+# make the CARLA client and the CARLA server
+make PythonAPI ARGS="--python-version=2"
+make launch
+
+# Press play in the Editor to initialize the server
+# Run example scripts to test CARLA
+# Terminal A 
+cd PythonAPI/examples
+python spawn_npc.py 
+# Terminal B
+cd PythonAPI/examples
+python spawn_npc.py # Support for Python2 was provided until 0.9.10 (not included)
+python dynamic_weather.py # Support for Python2 was provided until 0.9.10 (not included)
+
+环境变量
+export UE4_ROOT=~/simulator/UnrealEngine_4.24
+export CARLA_PATH=~/simulator(启动脚本使用)
+export PYTHONPATH=$PYTHONPATH:~/simulator/carla/PythonAPI/carla/dist/carla-0.9.10-py2.7-linux-x86_64.egg
+#export SUMO_HOME=~/simulator/sumo
+export SUMO_HOME=/usr/local/share/sumo
+source /opt/ros/melodic/setup.bash
+source ~/simulator/carla-ros-bridge/catkin_ws/devel/setup.bash
+
+安装脚本：/home/tl/simulator/carla/Util/BuildTools　　
+make PythonAPI ARGS="--python-version=2"会下载boost,可以注释掉setup.sh对应wget，提前复制过去，
+make launch:也可以复制到对应位置(/home/tl/simulator/carla/Build)
+content.tar.gz的更新也下载好了,拷到/home/tl/simulator/carla,对应脚本{CARLA_PATH}/carla/Update.sh
+
 
