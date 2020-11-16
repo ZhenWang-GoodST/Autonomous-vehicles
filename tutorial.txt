@@ -119,3 +119,16 @@ make launch:也可以复制到对应位置(/home/tl/simulator/carla/Build)
 content.tar.gz的更新也下载好了,拷到/home/tl/simulator/carla,对应脚本{CARLA_PATH}/carla/Update.sh
 
 
+https://sumo.dlr.de/docs/Installing/Linux_Build.html
+
+ sudo apt-get install cmake python g++ libxerces-c-dev libfox-1.6-dev libgdal-dev libproj-dev libgl2ps-dev swig
+ git clone --recursive https://github.com/eclipse/sumo
+ export SUMO_HOME="$PWD/sumo"
+ mkdir sumo/build/cmake-build && cd sumo/build/cmake-build
+ cmake ../..
+ make -j$(nproc)
+
+export SUMO_HOME=/usr/share/sumo
+sudo make install
+
+
